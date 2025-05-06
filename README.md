@@ -37,7 +37,7 @@
 - `src/components/AccountFormRow.vue` — компонент одной учетной записи (карточки)
 - `src/stores/accounts.ts` — Pinia store для хранения учетных записей
 - `src/App.vue` — точка входа приложения
-- ## [http://localhost:5173/form-v/](https://0vasiliy.github.io/form-v/) — деплой
+- ## [(https://0vasiliy.github.io/form-v/)](https://0vasiliy.github.io/form-v/) — деплой
 
 
 
