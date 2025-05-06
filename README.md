@@ -33,10 +33,10 @@
    [http://localhost:5173](http://localhost:5173) (или адрес, указанный в консоли)
 
 ## Структура проекта
-- `src/components/AccountManager.vue` — основной компонент формы
+- `src/components/AccountManager.vue` — основной компонент-обертка для списка
+- `src/components/AccountFormRow.vue` — компонент одной учетной записи (карточки)
 - `src/stores/accounts.ts` — Pinia store для хранения учетных записей
 - `src/App.vue` — точка входа приложения
 
-## Скриншот
-![Пример интерфейса](пример_скриншота.png)
+
 
