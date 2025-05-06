@@ -1,9 +1,12 @@
 <template>
+  <!-- Основной контейнер управления учетными записями -->
   <div>
     <h2 style="margin-bottom: 20px;">Учетные записи</h2>
+    <!-- Кнопка добавления новой записи -->
     <el-button type="primary" @click="addAccount" circle style="margin-bottom: 24px;">
       <el-icon><Plus /></el-icon>
     </el-button>
+    <!-- Подсказка для поля метки -->
     <el-alert
       title="Для указания нескольких меток для одной пары логин/пароль используйте разделитель ;"
       type="info"
@@ -11,6 +14,7 @@
       class="mb-4 mt-2"
       style="margin-bottom: 24px;"
     />
+    <!-- Список учетных записей -->
     <el-space direction="vertical" :size="24" style="width: 100%;">
       <AccountFormRow
         v-for="(account, idx) in accounts"
@@ -31,11 +35,14 @@ import { storeToRefs } from 'pinia';
 import { Plus } from '@element-plus/icons-vue';
 import AccountFormRow from './AccountFormRow.vue';
 
+// Получаем store Pinia и реактивные ссылки на список аккаунтов
 const store = useAccountsStore();
 const { accounts } = storeToRefs(store);
 
+// Локальное хранилище ошибок для каждой записи
 const accountErrors = ref<Record<number, { labels?: string; login?: string; password?: string }>>({});
 
+// Добавление новой пустой учетной записи
 function addAccount() {
   store.addAccount({
     id: crypto.randomUUID(),
@@ -46,10 +53,12 @@ function addAccount() {
   });
 }
 
+// Удаление учетной записи по индексу
 function removeAccount(idx: number) {
   store.removeAccount(idx);
 }
 
+// Обработка обновления записи (валидация и сохранение)
 function onUpdate(idx: number, payload: any) {
   accountErrors.value[idx] = payload.errors;
   if (Object.keys(payload.errors).length === 0) {
@@ -57,10 +66,12 @@ function onUpdate(idx: number, payload: any) {
   }
 }
 
+// Загрузка данных из localStorage при монтировании
 onMounted(() => {
   store.loadFromStorage();
 });
 
+// Сохранение данных в localStorage при изменении списка
 watch(accounts, () => {
   store.saveToStorage();
 }, { deep: true });
