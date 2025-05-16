@@ -38,5 +38,5 @@
 - `src/stores/accounts.ts` — Pinia store для хранения учетных записей
 - `src/App.vue` — точка входа приложения
 
-
+## http://localhost:5173/form-v/ деплой
 
